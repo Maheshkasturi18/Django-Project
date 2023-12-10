@@ -1,0 +1,312 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- csss -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/49216b763a.js" crossorigin="anonymous"></script>
+
+
+
+    <style>
+        .img-name {
+            font-size: 15px;
+            color: gray;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+
+
+    {% include "header.html"%}
+
+
+
+
+    <!-- video -->
+
+    <div class="video-bg mb-4 d-none d-lg-block">
+
+        <video src="{% static 'images/blog-caurosel.mp4' %}" type="video/mp4" width="100%" loop autoplay muted>
+
+        </video>
+
+    </div>
+
+    <div class="video-content  d-none d-lg-block text-center text-white">
+        <h1 class="text-uppercase mb-3">dream.explore.discover</h1>
+        <h5 class="text-capitalize mb-4">A journey of a thousand miles begins with a single step.</h5>
+        <a href="" class="btn btn-lg px-4 px-1 btn-outline-danger rounded-pill text-uppercase">explore</a>
+    </div>
+
+
+
+
+
+    <!-- trending blog -->
+
+    <div class="container   mb-4">
+
+        <h2 class="mb-3 px-4 text-center">Trending Blogs</h2>
+        <div class="row">
+            {% for n in featuredData %}
+            <div class="col-lg-4">
+
+                <div class="trends">
+                    <a href="/trendingsdetails/{{n.id}}" class="text-decoration-none"><img src="/media/{{n.blog_img}}"
+                            alt="" width="100%">
+                        <span class="featured-content ">{{n.blog_title}}</span></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+    <!-- popular blog -->
+
+    <div class="container  mb-4">
+
+        <h2 class="mb-3 px-4 text-center">Popular Blogs</h2>
+        <div class="row">
+
+            {% for n in blogData %}
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+
+                        <div class=" mb-3">
+                            <img src="/media/{{n.blog_img}}" alt="" class="card-img-top mb-2">
+
+                            <span class="img-name">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-map-pin mb-1">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+
+                                Adventure</span>
+                            <span class="float-end img-name">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-calendar mb-1">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                    <line x1="16" x2="16" y1="2" y2="6" />
+                                    <line x1="8" x2="8" y1="2" y2="6" />
+                                    <line x1="3" x2="21" y1="10" y2="10" />
+                                </svg>
+
+
+                                23,May 2023
+                            </span>
+
+                        </div>
+
+                        <a href="/popularsdetails/{{n.id}}" class="link-warning text-decoration-none">
+                            <h1 class="card-title blog-head">{{n.blog_title}}</h1>
+                        </a>
+                        <p class="card-text">{{n.blog_desc | safe}}</p>
+                        <a href="/popularsdetails/{{n.id}}" class=" link-danger link-underline-opacity-75 link-underline-opacity-100-hover link-offset-2">Read more</a>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
+    <div class="container mb-4 yt">
+
+        <h2 class="mb-3 px-4 text-center">Popular Videos</h2>
+
+        <div class="row">
+            <div class="col-lg-3 ">
+                <div class="ratio ratio-4x3 mb-3 yt-vid">
+                    <iframe src="https://www.youtube.com/embed/9FD2ugeS4OU" title="YouTube video">
+                    </iframe>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="ratio ratio-4x3  mb-3 yt-vid">
+                    <iframe src="https://www.youtube.com/embed/tlTdbc5byAs" title="YouTube video">
+                    </iframe>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="ratio ratio-4x3 mb-3 yt-vid">
+                    <iframe src="https://www.youtube.com/embed/AWHGQfzfHxI" title="YouTube video">
+                    </iframe>
+                </div>
+            </div>
+            <div class="col-lg-3 ">
+                <div class="ratio ratio-4x3 mb-3 yt-vid">
+                    <iframe src="https://www.youtube.com/embed/BhltwjuiEk4" title="YouTube video">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- latest blog -->
+
+    <div class="container mb-3">
+
+        <h2 class="mb-3 px-4 text-center">Latest Blogs</h2>
+
+        <div class="row">
+
+            <div class="col-lg-9">
+                <div class="row">
+
+                    {% for n in unescoData %}
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <div class="card-body ">
+                                <div class="mb-3 unesco-img">
+                                    <img src="/media/{{n.blog_img}}" alt="" class="card-img-top mb-2 ">
+
+                                    <span class="img-name">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pin mb-1">
+                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                            <circle cx="12" cy="10" r="3" />
+                                        </svg>
+
+                                        Travel</span>
+                                    <span class="float-end img-name">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-calendar mb-1">
+                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                            <line x1="16" x2="16" y1="2" y2="6" />
+                                            <line x1="8" x2="8" y1="2" y2="6" />
+                                            <line x1="3" x2="21" y1="10" y2="10" />
+                                        </svg>
+
+
+                                        23,May 2023</span>
+                                </div>
+                                <a href="/latestsdetails/{{n.id}}" class="text-decoration-none text-warning-emphasis">
+                                    <h1 class="card-title blog-head">{{n.blog_title}}</h1>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <!-- newsletter  -->
+
+
+            <div class="col-lg-3 d-none d-lg-block">
+
+                <div class="row ">
+                    <div class="col mb-5">
+                        <h5 class="text-center mb-3">Daily Updates</h5>
+                        <div class="rounded border border-dark-subtle px-3 py-4">
+                            <p class="fst-italic">Subscribe to our newsletter for the latest blog post & travel
+                                tips.
+                            </p>
+                            <form action="">
+                                <input type="email" name="" placeholder="Email Address..." id=""
+                                    class=" px-2 py-1 mx-0 mb-3" style="width: 100%;">
+                            </form>
+                            <div class="d-grid ">
+                                <button type="submit" class="btn btn-sm btn-danger text-capitalize">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- get in touch -->
+
+                    <div class=" mt-3">
+                        <div class="col">
+                            <h5 class="text-center mb-3">Get In Touch</h5>
+                            <div class="rounded border border-dark-subtle px-3 py-4">
+                                <p class="fst-italic text-center">Stay connected with us on Social Media.</p>
+
+                                <div class="d-flex mb-3 gap-2 ">
+                                    <a class="btn btn-sm text-capitalize px-3 btn-primary " href="https://facebook.com/"
+                                        role="button"><i class="fab fa-facebook me-2 "></i>Facebook</a>
+
+                                    <a class="btn  btn-sm px-3 text-white text-capitalize btn-info "
+                                        href="https://twitter.com/" role="button"><i
+                                            class="fab fa-twitter me-2 "></i>Twitter</a>
+                                </div>
+
+                                <div class="d-flex gap-2 ">
+                                    <a class="btn btn-sm px-3 text-capitalize btn-secondary "
+                                        href="https://instagram.com/" role="button"><i
+                                            class="fab fa-instagram me-2  "></i>Instagram</a>
+
+                                    <a class="btn btn-sm px-2 text-capitalize btn-danger " href="https://youtube.com/"
+                                        role="button"><i class="fab fa-youtube me-2 "></i>Youtube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- footer -->
+    {% include "footer.html"%}
+
+
+
+
+</body>
+
+</html>
+
+
